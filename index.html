@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Monoton&family=Open+Sans:wght@400;700&family=Playfair+Display+SC:wght@400;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Work+Sans:wght@400;700&display=swap");
+
+.img-hint {
+    border-radius: 20px;
+    margin: 5px;
+    width: 220px;
+}
+
+h1,
+p {
+    font-family: cliveat;
+    font-weight: bolder;
+    color: white;
+    margin: 0px;
+    padding: 0px;
+}
+
+.timer-container {
+    background-color: #00bafc;
+    padding: 5px;
+    text-align: center;
+    height: 110vh;
+   
+    display: fixed;
+}
+
+.timer-display {
+    font-size: 50px;
+    color: white;
+}
+
+.user-input {
+    border-width: 0px;
+    border-radius: 4px;
+    padding: 6px;
+    text-align: center;
+}
+
+.bomb-image {
+    margin-top: 25px;
+    width: 150px;
+}
+    </style>
+</head>
+
+<body>
+    <div class="timer-container">
+        <h1>Hint:</h1>
+        <p>Guess the movive name to defuse the Bomb </p>
+        <img src="https://res.cloudinary.com/dk6egvuyy/image/upload/v1725608512/movie_puzzel_RRR_givq0q.jpg" class="img-hint shadow" alt="image" /><br>
+        <input type="text" class="user-input" placeholder="Enter key in Small letters" id="defuser" />
+        <br />
+        <img src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-dynamic-webapps/time-bomb-img.png" class="bomb-image" />
+        <p class="timer-display" id="timer">20</p>
+    </div>
+
+  <script>
+    let timerEl = document.getElementById("timer");
+let defuserEl = document.getElementById("defuser");
+
+defuserEl.addEventListener("keydown", function(event) {
+    let bombDefuserText = defuserEl.value;
+    if (event.key === "Enter" && bombDefuserText === "rrr" && countDown !== 0) {
+        timerEl.textContent = "Successfully Defused";
+        timerEl.style.color = "green";
+        clearInterval(setIntervalId);
+    }else{
+        timerEl.textContent = "Not Matched Try Again";
+       
+        
+    }
+
+});
+let countDown = 20;
+let setIntervalId = setInterval(function() {
+    countDown = countDown - 1;
+    timerEl.textContent = countDown;
+    //console.log(countDown);
+    if (countDown === 0) {
+        timerEl.textContent = "BOOM BOOM!!";
+        timerEl.style.color = "red";
+        clearInterval(setIntervalId);
+    }
+}, 1000);
+  </script>
+</body>
+
+</html>
